@@ -1,6 +1,13 @@
 from django.urls import path, include
 from .views import hello, Register, Login, ChangePassword, TaskView, TaskDetailView, ArchiveTask, ArchievedTaskView, UnArchiveTask
 from rest_framework.authtoken.views import obtain_auth_token
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+
+    
 urlpatterns = [
     path("hello/", hello),
     path('register/', Register.as_view()),
@@ -14,4 +21,6 @@ urlpatterns = [
     path('unarchive-task/<int:pk>/', UnArchiveTask.as_view()),
     path('auth/', include('dj_rest_auth.urls')),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('auth/google/', GoogleLogin.as_view(), name='google_login'),
+
 ]
