@@ -113,7 +113,7 @@ idna==3.10
 kombu==5.5.4
 packaging==25.0
 prompt_toolkit==3.0.51
-psycopg2-binary==2.9.9
+psycopg2==2.9.9
 pycparser==2.22
 PyJWT==2.10.1
 python-crontab==3.2.0
