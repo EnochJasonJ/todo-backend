@@ -1,18 +1,28 @@
+# services:
+#   - type: web
+#     name: todo-backend
+#     env: python
+#     buildCommand: pip install -r requirements.txt
+#     startCommand: gunicorn project.wsgi
+
+#   - type: worker
+#     name: celery-worker
+#     env: python
+#     buildCommand: pip install -r requirements.txt
+#     startCommand: celery -A project worker --loglevel=info
+
+#   - type: worker
+#     name: celery-beat
+#     env: python
+#     buildCommand: pip install -r requirements.txt
+#     startCommand: celery -A project beat --loglevel=info
+
+
 services:
   - type: web
-    name: todo-backend
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn project.wsgi
-
-  - type: worker
-    name: celery-worker
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: celery -A project worker --loglevel=info
-
-  - type: worker
-    name: celery-beat
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: celery -A project beat --loglevel=info
+    name: django-app
+    env: docker
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8000
